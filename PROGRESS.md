@@ -10,7 +10,7 @@
 
 | # | Module | Status | Hrs (est) | Hrs (actual) |
 |---|--------|--------|-----------|--------------|
-| 0 | Foundations | 🟡 | 4–5 | |
+| 0 | Foundations | ✅ | 4–5 | 1 |
 | 1 | Testing & quality gates | ⬜ | 5–6 | |
 | 2 | CI (skim) | ⬜ | 5–6 | |
 | 3 | Containerization | ⬜ | 6–8 | |
