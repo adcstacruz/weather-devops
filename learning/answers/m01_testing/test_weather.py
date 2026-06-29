@@ -7,10 +7,10 @@ no real network traffic is made. The tests are fully deterministic.
 import httpx
 import pytest
 import respx
+from app.weather import OPENWEATHERMAP_URL
 from starlette.testclient import TestClient
 
 from app.main import app
-from app.weather import OPENWEATHERMAP_URL
 
 client = TestClient(app)
 

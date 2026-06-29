@@ -11,7 +11,7 @@
 | # | Module | Status | Hrs (est) | Hrs (actual) |
 |---|--------|--------|-----------|--------------|
 | 0 | Foundations | ✅ | 4–5 | 1 |
-| 1 | Testing & quality gates | ✅ | 5–6 | 1 |
+| 1 | Testing & quality gates | ⬜ | 5–6 | |
 | 2 | CI (skim) | ⬜ | 5–6 | |
 | 3 | Containerization | ⬜ | 6–8 | |
 | 4 | App architecture & resilience | ⬜ | 6–8 | |
@@ -39,14 +39,11 @@ pre-commit hooks: trailing-whitespace, end-of-file-fixer, check-yaml, check-toml
 Issue #1 → branch feat/1-m0-foundations → this PR. Conventional Commits enforced from first commit._
 
 ## Module 1 — Testing & quality gates
-- [x] `pytest` green with external call mocked
-- [x] coverage report generated
-- [x] mypy + ruff clean
+- [ ] `pytest` green with external call mocked
+- [ ] coverage report generated
+- [ ] mypy + ruff clean
 
-_Notes: 2026-06-29 — 8 tests, 100% coverage. respx mocks httpx at transport layer (no network).
-`app/weather.py` stub adapter: httpx → OpenWeatherMap, raise_for_status, returns dict[str, Any].
-`/weather` endpoint: 502 on upstream error (semantically correct for an aggregator).
-mypy strict=true, ruff check+format both clean._
+_Notes:_
 
 ## Module 2 — CI (skim)
 - [ ] CI runs and passes on a PR

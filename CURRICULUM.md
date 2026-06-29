@@ -47,11 +47,45 @@
 
 ## How to use this with Claude Code
 
-This curriculum is the spine. You build the pipeline **one module at a time**, prompting Claude Code against your *real* repo state so each step reacts to what you've already built. Don't ask it to do all modules at once — that blows context and produces shallow work.
+This curriculum is the spine. You build the pipeline **one module at a time**. Don't ask Claude to do all modules at once — that produces shallow work.
 
-### Per-module prompt template
+### Per-module prompt
 
-> We're on **Module N** of `learning/CURRICULUM.md`. First explain the architecture and the design tradeoffs for this module (show the alternatives and weigh them — don't just give me one answer). Then generate `learning/mNN_<name>.md` capturing what we cover, and implement the changes in the repo **incrementally**, pausing so I understand each step before moving on. Update `PROGRESS.md` when the module's Definition of Done is met. Do **not** skip ahead to later modules.
+> Read CURRICULUM.md, PROGRESS.md, and WORKFLOW.md. Tell me which module I'm on based on PROGRESS.md, then continue from the next unfinished one — that module only.
+
+---
+
+## Teaching model
+
+This is how every module runs. Claude Code follows this contract.
+
+### 1. Always start with why
+
+Before any code, explain the *problem* the tool or pattern solves. If you don't know why something exists, you won't know when to use it or how to debug it.
+
+### 2. Step-by-step with generated code to copy-paste
+
+Each step:
+1. **Concept** — what this is and why it matters
+2. **Code** — Claude generates it; you copy-paste it into your editor and run it
+3. **You run the command** — paste the output back if something's wrong
+4. **Milestone check** — verify the step actually worked before moving on
+
+You are not a passive observer. You copy-paste, you run, you read the output, you answer checkpoint questions.
+
+### 3. Exercises
+
+Each module has exercises you do *after* the build steps. These are hands-on interactions with the system you just built — breaking things deliberately, reading output, making small modifications. No exercises = no retention.
+
+### 4. Milestone checks
+
+At each milestone, Claude asks you a question or asks you to run a command and paste the result. The module does not continue until the milestone passes. This keeps you honest.
+
+### 5. Reference answers
+
+Each module's completed code is archived in `learning/answers/mNN_<name>/` before you redo it. Use it if you're stuck — but try first.
+
+---
 
 ### Definition of Done
 
@@ -109,6 +143,22 @@ M5 and M8–9 are the heavy, highest-value modules — budget extra patience the
 **You build:** unit tests for the (stub) weather logic, respx-mocked tests for the HTTP adapter, coverage reporting, ruff + mypy wired as commands.
 
 **Design decisions to weigh:** mock with recorded fixtures vs contract tests vs a sandbox; coverage threshold vs no threshold.
+
+**Steps:**
+1. Why tests? Why mock? (concept)
+2. Add `app/weather.py` stub adapter → **Milestone: imports without error**
+3. Wire `/weather` endpoint into `app/main.py` → **Milestone: curl returns data or 502**
+4. Add `tests/test_health.py` → **Milestone: `pytest` green on health**
+5. Add `tests/test_weather.py` with respx → **Milestone: all tests green, no network calls**
+6. Add coverage config → **Milestone: coverage report visible**
+7. Run mypy + ruff → **Milestone: both clean**
+
+**Exercises (do these after the build steps):**
+- E1: Add an unused import to `app/weather.py`, try to commit — what happens?
+- E2: Remove the return type from `fetch_weather`, run `uv run mypy app/` — what does strict mode say?
+- E3: Remove `@respx.mock` from one test, run pytest — what error do you get and why?
+- E4: Look at the coverage report. What does the `Missing` column mean? What would cause a line to show up there?
+- E5: Write one new test yourself — what happens when `city` is an empty string?
 
 **DoD:**
 - [ ] `pytest` green with the external call fully mocked
