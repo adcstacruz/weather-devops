@@ -10,7 +10,7 @@
 
 | # | Module | Status | Hrs (est) | Hrs (actual) |
 |---|--------|--------|-----------|--------------|
-| 0 | Foundations | ⬜ | 4–5 | |
+| 0 | Foundations | 🟡 | 4–5 | |
 | 1 | Testing & quality gates | ⬜ | 5–6 | |
 | 2 | CI (skim) | ⬜ | 5–6 | |
 | 3 | Containerization | ⬜ | 6–8 | |
@@ -29,12 +29,14 @@
 ---
 
 ## Module 0 — Foundations
-- [ ] `uv run uvicorn` serves `/health`
-- [ ] `pre-commit run --all-files` passes
-- [ ] `.gitignore`, `README.md`, pinned deps present
-- [ ] `WORKFLOW.md` + PR template present; first issue worked on a `feat/<n>-…` branch with a Conventional Commit referencing it
+- [x] `uv run uvicorn` serves `/health`
+- [x] `pre-commit run --all-files` passes
+- [x] `.gitignore`, `README.md`, pinned deps present
+- [x] `WORKFLOW.md` + PR template present; first issue worked on a `feat/<n>-…` branch with a Conventional Commit referencing it
 
-_Notes:_
+_Notes: 2026-06-29 — scaffold complete. uv 0.9.18, fastapi 0.138.1, ruff 0.15.20, mypy 2.1.0.
+pre-commit hooks: trailing-whitespace, end-of-file-fixer, check-yaml, check-toml, ruff lint, ruff-format.
+Issue #1 → branch feat/1-m0-foundations → this PR. Conventional Commits enforced from first commit._
 
 ## Module 1 — Testing & quality gates
 - [ ] `pytest` green with external call mocked
